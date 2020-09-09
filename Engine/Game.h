@@ -69,12 +69,12 @@ private:
 	//double snekMovePreriod = 25.0; // default was 60 frames/moves per second; now is 60/25 = 2.5 moves per second
 
 	// changed variables of movement from int to float
-	float snek_move_period = 20.0f;
-	static constexpr float snek_move_period_min = 4.0f;
+	float snek_move_period = 0.4f; // this is starting move period
+	static constexpr float snek_move_period_min = 0.07f; // amount of time between moves; 0.07 sec per move
 	double acceleration = 0.7;
 	float snekMoveCounter = 0.0f;
-	static constexpr float snek_speedup_period = 180.0f;
-	float snek_spedup_counter = 0.0;
+	static constexpr float snek_speedup_factor = 0.05f;
+	
 	bool start_game = false;
 	bool gameOver = false;
 	//SnakeMy snkMy;	

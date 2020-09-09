@@ -89,7 +89,7 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	float dt = ft.Mark(); // calculate the time for previous frame
+	const float dt = ft.Mark(); // calculate the time for previous frame
 
 	if (start_game)
 	{
@@ -113,11 +113,11 @@ void Game::UpdateModel()
 			}
 			
 			
-			snekMoveCounter += 1.0f * 60.0f * dt;	// move counter acording to time		
+			snekMoveCounter += dt;	// move counter acording to time		
 			
 			if (snekMoveCounter >= snek_move_period)
 			{
-				snekMoveCounter = 0.0f;
+				snekMoveCounter -= snek_move_period;
 				const Location headLoc = snek.GetNextHeadLocation(delta_loc);
 				for (int i = 0; i < count_obstacle; i++)
 				{
@@ -162,14 +162,9 @@ void Game::UpdateModel()
 				}
 
 			}
-
-			snek_spedup_counter += 1.0f * 60.0f * dt; // count speedup acording to time
-
-			if (snek_spedup_counter >= snek_speedup_period)
-			{
-				snek_spedup_counter = 0.0f;
-				snek_move_period = std::max(snek_move_period - 1.0f, snek_move_period_min);	
-			}
+			// perioda gibanja se zmanjsa proporcionalnog glede na cas dt * faktor
+			// snekMoveCounter, ki vsakic hitreje doseze to periodo proporcionalno glede nacas za kolikor se perioda zmanjsa
+			snek_move_period = std::max( snek_move_period - dt * snek_speedup_factor, snek_move_period_min);
 		} // if game over: do not update the data
 	}
 	else

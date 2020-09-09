@@ -89,7 +89,7 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	float dt = ft.Mark();
+	float dt = ft.Mark(); // calculate the time for previous frame
 
 	if (start_game)
 	{
@@ -113,7 +113,7 @@ void Game::UpdateModel()
 			}
 			
 			
-			snekMoveCounter += 1.0f * 60.0f * dt;			
+			snekMoveCounter += 1.0f * 60.0f * dt;	// move counter acording to time		
 			
 			if (snekMoveCounter >= snek_move_period)
 			{
@@ -163,12 +163,12 @@ void Game::UpdateModel()
 
 			}
 
-			snek_spedup_counter += 1.0f * 60.0f * dt;
+			snek_spedup_counter += 1.0f * 60.0f * dt; // count speedup acording to time
 
 			if (snek_spedup_counter >= snek_speedup_period)
 			{
 				snek_spedup_counter = 0.0f;
-				snek_move_period = std::max(snek_move_period - 1, snek_move_period_min);	
+				snek_move_period = std::max(snek_move_period - 1.0f, snek_move_period_min);	
 			}
 		} // if game over: do not update the data
 	}

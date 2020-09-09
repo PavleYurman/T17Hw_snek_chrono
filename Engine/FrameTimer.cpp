@@ -1,5 +1,7 @@
 #include "FrameTimer.h"
 
+
+// implemeented freme timer
 FrameTimer::FrameTimer()
 {
 	last = std::chrono::steady_clock::now();

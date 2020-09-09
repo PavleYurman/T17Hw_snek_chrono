@@ -30,7 +30,7 @@
 //#include "Target.h"
 #include "Goal.h"
 #include "Obstacle.h"
-#include "FrameTimer.h"
+#include "FrameTimer.h" // imported frame timer
 #define N 100
 
 class Game
@@ -54,7 +54,7 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
-	FrameTimer ft;
+	FrameTimer ft; // declaraed object frame timer
 	Board board;
 	Snake snek;
 	//unsigned int green = 255;
@@ -68,6 +68,7 @@ private:
 	Obstacle* obstacles = (Obstacle*)malloc(sizeof(Obstacle) * N);
 	//double snekMovePreriod = 25.0; // default was 60 frames/moves per second; now is 60/25 = 2.5 moves per second
 
+	// changed variables of movement from int to float
 	float snek_move_period = 20.0f;
 	static constexpr float snek_move_period_min = 4.0f;
 	double acceleration = 0.7;
